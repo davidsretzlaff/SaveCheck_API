@@ -21,6 +21,19 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    passwordResetToken:{
+        type: String,
+        select: false,
+    },
+    passwordResetExpires:{
+        type: Date,
+        select: false,
+    },
+    type:{
+        type : String,
+        default:"user",
+    },
+    image: { type: String, required: false },
 });
 
 UserSchema.pre('save', async function(next){
