@@ -20,14 +20,15 @@
     "nodemailer": "^6.2.1",
     "nodemailer-express-handlebars": "^3.0.0",
     "path": "^0.12.7"
-  }
+  },
 
-}
-{
   "name": "SaveCheck-API",
   "description": "a really cool app",
   "version": "1.0.0",
   "engines": {
     "node": "8.10.0"
   }
+
+
 }
+
