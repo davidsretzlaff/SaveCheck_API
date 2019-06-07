@@ -3,7 +3,7 @@ const hbs = require('nodemailer-express-handlebars');
 const exphbs = require('express-handlebars')
 const path = require('path');
 
-const{service,user,pass} = require('./config/mail.json'); 
+const{service,user,pass} = require('../config/mail.json'); 
 
 
 
