@@ -6,12 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines": {
-    "node": "8.10.0"
-  },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "8.10.0"
+   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
