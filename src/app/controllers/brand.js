@@ -237,13 +237,7 @@ router.delete('/:id', async (req, res) => {
 
 /*  GET brand by pendent */
 router.get('/pendent/:pendent', async function (req, res, next) {
-  const { email,password} = req.body;
-
-  if(email == undefined || password == undefined)
-    return res.status(400).send({error : "Need email and password for authentication "});
-
-  if(!await checkPermission(email))
-    return res.status(400).send({error: "Permission denied"})
+  
 
   console.log("search brand to name", req.params.name)
   const { pendent } = req.params;
