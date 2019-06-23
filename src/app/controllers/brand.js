@@ -195,14 +195,8 @@ router.put('/:id', upload.single('brandImage'), async function  (req, res, next)
   });
 });
 router.delete('/:id', async (req, res) => {
-  const { email,password} = req.body;
-  const { id } = req.params;
-
-  if(email == undefined || password == undefined)
-    return res.status(400).send({error : "Need email and password for authentication "});
   
-  if(!await checkPermission(email))
-    return res.status(400).send({error: "Permission denied"})
+  const { id } = req.params;
 
   console.log("Delete ", req.params.id);
 
