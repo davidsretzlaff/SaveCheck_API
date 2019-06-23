@@ -298,7 +298,8 @@ router.put('/:id', upload.single('productImage'), async (req, res) => {
         product.isCrueltyFree = false;
         product.isCrueltyFreeVerify = true;
       }
-    }
+    } 
+    
 
     if (req.body.ingredients != undefined) {
       await asyncForEach(req.body.ingredients, async (element) => {
