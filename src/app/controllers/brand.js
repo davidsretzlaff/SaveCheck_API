@@ -153,15 +153,7 @@ router.post('/', upload.single('brandImage'), async (req, res) => {
 
 /* PUT BRAND */
 router.put('/:id', upload.single('brandImage'), async function  (req, res, next) {
-  const { email,password} = req.body;
-  const { id } = req.params;
-
-  if(email == undefined || password == undefined)
-    return res.status(400).send({error : "Need email and password for authentication "});
-  
-  
-  if(!await checkPermission(email))
-    return res.status(400).send({error: "Permission denied"})
+ 
 
   console.log("PUT ", req.params.id);
 
@@ -259,6 +251,19 @@ router.get('/pendent/:pendent', async function (req, res, next) {
 
 /*PUT LIKE Brand*/
 router.put('/like/:id', async (req, res) => {
+  const { email} = req.body;
+  const { id } = req.params;
+
+  if(email == undefined)
+    return res.status(400).send({error : "Email inválido"});
+
+  console.log("PUT ", req.params.id);
+
+  if (id == undefined)
+    return res.status(400).send({ status: "error", error: "Need to pass id " });
+
+  if (!id.match(/^[0-9a-fA-F]{24}$/))
+    return res.status(400).send({ status: "error", error: "Id inválido" });
 
   // search brand
   Brand.findById(id, async function (error, brand) {
@@ -486,7 +491,8 @@ router.put('/comments/:id', async (req, res) => {
 
 //delete comments
 router.put('/deletecomments/:id', async (req, res) => {
- 
+
+
 
   console.log("Delete ", req.params.id);
 
