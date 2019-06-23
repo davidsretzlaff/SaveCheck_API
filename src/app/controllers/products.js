@@ -241,7 +241,7 @@ router.post('/', upload.single('productImage'), async (req, res) => {
 
 /* put produtos listing. */
 router.put('/:id', upload.single('productImage'), async (req, res) => {
-  
+  const { id } = req.params;
 
   console.log("PUT ", req.params.id);
 
@@ -578,7 +578,7 @@ router.delete('/:id', async (req, res) => {
  
 
   console.log("Delete ", req.params.id);
-
+  const { id } = req.params;
   if (id == undefined)
     return res.status(400).send({ error: "need to pass id " });
 

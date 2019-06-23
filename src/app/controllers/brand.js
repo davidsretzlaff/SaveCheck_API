@@ -154,7 +154,7 @@ router.post('/', upload.single('brandImage'), async (req, res) => {
 /* PUT BRAND */
 router.put('/:id', upload.single('brandImage'), async function  (req, res, next) {
  
-
+  const { id } = req.params;
   console.log("PUT ", req.params.id);
 
   if (id == undefined)
@@ -492,7 +492,7 @@ router.put('/comments/:id', async (req, res) => {
 //delete comments
 router.put('/deletecomments/:id', async (req, res) => {
 
-
+  const { id } = req.params;
 
   console.log("Delete ", req.params.id);
 
