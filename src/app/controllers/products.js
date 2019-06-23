@@ -241,14 +241,7 @@ router.post('/', upload.single('productImage'), async (req, res) => {
 
 /* put produtos listing. */
 router.put('/:id', upload.single('productImage'), async (req, res) => {
-  const { email,password} = req.body;
-  const { id } = req.params;
-
-  if(email == undefined || password == undefined)
-    return res.status(400).send({error : "Need email and password for authentication "});
   
-  if(!await checkPermission(email))
-    return res.status(400).send({error: "Permission denied"})
 
   console.log("PUT ", req.params.id);
 
@@ -582,14 +575,7 @@ async function asyncForEach(array, callback) {
 }
 /* DELETE product listing. */
 router.delete('/:id', async (req, res) => {
-  const { email,password} = req.body;
-  const { id } = req.params;
-
-  if(email == undefined )
-    return res.status(400).send({error : "Need email for authentication "});
-  
-  if(!await checkPermission(email))
-    return res.status(400).send({error: "Permission denied"})
+ 
 
   console.log("Delete ", req.params.id);
 
