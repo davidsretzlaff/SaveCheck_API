@@ -235,7 +235,7 @@ router.post('/', upload.single('productImage'), async (req, res) => {
     if (error)
       res.status(500).send(error);
 
-    res.sendStatus(201);
+    res.sendStatus(200);
   });
 });
 
@@ -318,7 +318,7 @@ router.put('/:id', upload.single('productImage'), async (req, res) => {
         res.send(err);
         console.log(err)
       //Se não teve erro, retorna response normal (200)
-      res.sendStatus(200);
+      res.status(200).json({ status: "success", message: 'Produto Criado!' });
     });
   });
 });
@@ -345,7 +345,7 @@ router.put('/like/:id', async (req, res) => {
       res.send(error);
 
     if (!product)
-      return res.status(200).json({ status: "error", message: 'Produto não encontrado' });
+      return res.status(400).json({ status: "error", message: 'Produto não encontrado' });
 
 
     // searching user

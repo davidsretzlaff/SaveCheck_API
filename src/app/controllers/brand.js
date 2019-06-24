@@ -146,7 +146,7 @@ router.post('/', upload.single('brandImage'), async (req, res) => {
     if (error)
       res.status(500).send(error);
 
-    res.sendStatus(201);
+    res.status(200).json({ status: "success", message: 'Marca Criada' });
   });
 });
 
