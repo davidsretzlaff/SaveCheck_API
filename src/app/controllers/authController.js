@@ -177,6 +177,32 @@ router.post('/authenticate', async (req,res) =>{
     });
 });
 
+
+router.get('/authenticateget', async (req,res) =>{
+  const{ email, password } = req.body;
+
+  if(email == undefined)
+      return res.status(400).send({error : "Precisa de email para autenticação"});
+  
+  if(password == undefined)
+      return res.status(400).send({error : "Precisa de senha para autenticação "});
+  
+  const user = await User.findOne({ email }).select('+password');
+
+  if( !user )
+      return res.status(400).send({ error: "Usuário não encontrado" });
+  
+  if(!await bcrypt.compare(password, user.password))
+      return res.status(400).send({ error: 'Senha invalida' });
+
+  user.password = undefined;
+
+  res.send({
+      user
+        // token : generateToken({ id: user.id }),
+  });
+});
+
 router.delete('/:id', function(req, res, next) {
     console.log("Delete ", req.params.id);
     User.remove({
