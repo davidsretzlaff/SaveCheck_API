@@ -235,7 +235,7 @@ router.post('/', upload.single('productImage'), async (req, res) => {
     if (error)
       res.status(500).send(error);
 
-    res.sendStatus(200);
+    res.status(200).json({ status: "success", message: 'Produto Criado!' });
   });
 });
 
@@ -318,7 +318,7 @@ router.put('/:id', upload.single('productImage'), async (req, res) => {
         res.send(err);
         console.log(err)
       //Se não teve erro, retorna response normal (200)
-      res.status(200).json({ status: "success", message: 'Produto Criado!' });
+      res.status(200).json({ status: "success", message: 'Produto Alterado!' });
     });
   });
 });
