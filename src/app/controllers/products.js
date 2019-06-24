@@ -299,7 +299,7 @@ router.put('/:id', upload.single('productImage'), async (req, res) => {
         product.isCrueltyFreeVerify = true;
       }
     } 
-    
+
 
     if (req.body.ingredients != undefined) {
       await asyncForEach(req.body.ingredients, async (element) => {
@@ -313,9 +313,10 @@ router.put('/:id', upload.single('productImage'), async (req, res) => {
       product.ingredients = req.body.ingredients;
     }
 
-    product.save(function (error) {
-      if (error)
-        res.send(error);
+    product.save(function (err) {
+      if (err)
+        res.send(err);
+        console.log(err)
       //Se não teve erro, retorna response normal (200)
       res.sendStatus(200);
     });

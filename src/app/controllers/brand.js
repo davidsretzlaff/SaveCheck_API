@@ -144,7 +144,7 @@ router.post('/', upload.single('brandImage'), async (req, res) => {
 
   brand.save(function (error) {
     if (error)
-      res.status(500).send(err);
+      res.status(500).send(error);
 
     res.sendStatus(201);
   });
