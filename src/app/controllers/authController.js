@@ -77,12 +77,13 @@ router.post('/forgot_password', async(req,res) => {
               from: 'safecheckvegan@gmail.com',
               template:'auth/forgot_password',
               context: {token},
+              headers: "Recuperar senha"
           }, (err)=> {
                 if(err){
                     console.log(err);
                     return res.status(400).send({error: 'Não foi possível mandar email para recuperação de senha'});
                 }
-                return res.send();
+                 return res.status(200).json({ status: "success", message: 'E-mail Enviado' });
 
           })
     } catch (error) {
@@ -107,7 +108,7 @@ router.post('/reset_password', async(req,res) =>{
         const now = new Date();
 
         if(now > user.passwordResetExpires)
-            return res.status(400).send({error: 'Token expirou, precisa gerar um novo token'});
+            return res.status(400).send({error: 'O tempo expirou, precisa realizar um novo pedido para resetar sua senha.'});
         
         user.password = password;
 
