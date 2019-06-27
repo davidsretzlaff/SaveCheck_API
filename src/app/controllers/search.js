@@ -29,4 +29,29 @@ router.get('/',authMiddleware, function (req, res, next) {
   });
 });
 
+/* DELETE product listing. */
+router.delete('/:id', async (req, res) => {
+ 
+
+  console.log("Delete ", req.params.id);
+  const { id } = req.params;
+  if (id == undefined)
+    return res.status(400).send({ error: "need to pass id " });
+
+  if (!id.match(/^[0-9a-fA-F]{24}$/))
+    return res.status(400).send({ error: "Wrong id format" });
+
+    Search.remove({ _id: req.params.id }, (err, product) => {
+    if (err) {
+      res.status(500).send({ status: "error", message: err });
+      return;
+    }
+    if (product.n > 0) {
+      res.status(200).json({ status: "success", message: 'search deleted!' });
+    } else {
+      res.status(200).json({ status: "error", message: 'search not found' });
+    }
+
+  });
+});
 module.exports = app => app.use('/search', router);
