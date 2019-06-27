@@ -113,8 +113,7 @@ router.post('/reset_password', async(req,res) =>{
 
         await user.save();
 
-        res.send();
-
+        res.status(200).json({ status: "success", message: 'Senha alterada' });
 
 
     } catch (err) {
