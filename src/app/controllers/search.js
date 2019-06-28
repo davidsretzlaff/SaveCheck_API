@@ -19,7 +19,7 @@ router.use((req,res,next)=>{
   // Pass to next layer of middleware
   next();
 });
-router.get('/',authMiddleware, function (req, res, next) {
+router.get('/', function (req, res, next) {
     Search.find(function (err, search) {
     if (err) {
       res.status(500).send(err);
@@ -31,8 +31,6 @@ router.get('/',authMiddleware, function (req, res, next) {
 
 /* DELETE product listing. */
 router.delete('/:id', async (req, res) => {
- 
-
   console.log("Delete ", req.params.id);
   const { id } = req.params;
   if (id == undefined)
@@ -46,7 +44,7 @@ router.delete('/:id', async (req, res) => {
       res.status(500).send({ status: "error", message: err });
       return;
     }
-    if (product.n > 0) {
+    if (Search.n > 0) {
       res.status(200).json({ status: "success", message: 'search deleted!' });
     } else {
       res.status(200).json({ status: "error", message: 'search not found' });
